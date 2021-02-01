@@ -50,4 +50,27 @@ public class ContaTest {
         final Conta instance = new Conta();
         assertNotNull(instance.getMovimentacoes());
     }
+    
+    @Test
+    void testGetSaldo(){
+        final double limite = 500;
+        final double esperado = limite;
+        final Conta instance = new Conta();
+        instance.setEspecial(true);
+        instance.setLimite(limite);
+        final double obtido = instance.getSaldoTotal();
+        assertEquals(esperado, obtido);
+   }
+    
+    @Test
+    void testDepositoDinheiro(){
+        final double limite = 500.6, deposito = 500.8, esperado = 1001.4;
+        final Conta instance = new Conta();
+        instance.setEspecial(true);
+        instance.setLimite(limite);
+        instance.depositoDinheiro(deposito);
+        
+        final double obtido = instance.getSaldoTotal();
+        assertEquals(esperado, obtido, 0.001);
+    }
 }
